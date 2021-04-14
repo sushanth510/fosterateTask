@@ -1,0 +1,20 @@
+
+<h4 class="contacts-heading">CONTACTS</h4>
+
+
+ <div class="flex-container" *ngIf="contacts.length!=0">
+    <app-contacts class="contacts" ></app-contacts>
+    
+    
+    <app-display-contact class="display-contact" ></app-display-contact>
+
+
+    <app-details-modification class="details-modification" ></app-details-modification>
+
+ </div>   
+
+ <div *ngIf="contacts.length==0">
+   <h1>oops!no contacts</h1>
+ </div>
+        
+    

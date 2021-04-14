@@ -1,0 +1,33 @@
+ul{
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+.details-modification
+{
+    
+    
+    margin-left: 450px;
+    margin-top: 13px;
+    font-weight: 400;
+    display: inline-block;
+}
+.edit_action
+{
+    display: inline-block;
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+}
+.delete_action
+{
+    display: inline-block;
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+    margin-left: 4px;
+}
+.delete_img{
+    margin-bottom: 10px;
+}

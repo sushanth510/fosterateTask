@@ -1,0 +1,14 @@
+
+
+<ul class="contacts" id="contacts" >
+    <li class="" id="contact1">
+        <ul   *ngFor="let contact of contacts" [ngClass]="{'contact-details':true,'contact-active':(contact.c_id==currentActiveId)}" (click)="updateId(contact.c_id)">
+            
+            <li class="contact-name" id="contact-name" >{{contact.name}}</li> 
+            <li  id="phone-number">{{contact.mobile}}</li>
+            <li  id="mail-id">{{contact.email}}</li>
+        </ul>
+    </li>
+    
+</ul>
+

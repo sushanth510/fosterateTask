@@ -1,0 +1,36 @@
+ul{
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+
+.contacts{
+    border: 1px solid rgb(189,210,218);
+    width: 310px;
+    display: inline-block;
+    margin-top: 20px;
+    margin-left: 25px;
+    font-weight:300;
+    padding: 0px;
+}
+.contact-details
+{
+    font-size:14px;
+    padding: 10px 0px 10px 25px;
+    border-bottom: 1px solid rgb(189,210,218);
+    cursor: pointer;
+}
+.contact-details>li 
+{
+    padding-bottom: 5px;
+    font-weight: 400;
+}
+.contact-name
+{
+    font-size: 20px;
+}
+.contact-active
+{
+    background-color: rgb(207,231,243);
+}

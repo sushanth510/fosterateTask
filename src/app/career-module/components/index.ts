@@ -1,0 +1,7 @@
+export * from './add'
+export * from './contacts'
+export * from './details-modification'
+export * from './display-contact'
+export * from './edit'
+export * from './form'
+export * from './home'
