@@ -1,0 +1,244 @@
+a:link{
+            
+    text-decoration: none;
+}
+body{
+    font-family: 'Segoe ui';
+    margin: 0px;
+}
+.flex-container
+{
+    display: flex;
+    flex-direction: row;
+}
+.main-heading{
+    background-color:rgb(51,152,204);
+    color: white;
+    font-size: 60px;
+    font-weight: 100;
+    padding: 32px 32px;
+    padding-left: 10px;
+    margin: 0px;
+}
+ul{
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+.navbar{
+    background-color:rgb(51,51,51);
+    color: white;
+    height:30px;
+    padding-top: 4px;
+    margin: 0px;
+    padding-left: 10px;
+}
+.nav-link{
+    display: inline-block;
+    padding:0px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    
+}
+
+.active
+{
+    background-color:rgb(255,153,0);
+    display: inline;
+    padding: 5px 8px 9px;
+    color: black;
+    border-left:3px solid white;
+}
+
+
+
+.contacts{
+    border: 1px solid rgb(189,210,218);
+    width: 310px;
+    display: inline-block;
+    margin-top: 20px;
+    margin-left: 25px;
+    font-weight:300;
+    padding: 0px;
+}
+.contact-details
+{
+    font-size:14px;
+    padding: 10px 0px 10px 25px;
+    border-bottom: 1px solid rgb(189,210,218);
+    cursor: pointer;
+}
+.contact-details>li 
+{
+    padding-bottom: 5px;
+    font-weight: 400;
+}
+.contact-name
+{
+    font-size: 20px;
+}
+.contact-active
+{
+    background-color: rgb(207,231,243);
+}
+
+
+.display-contact{
+    display: inline-block;
+    margin-left: 450px;
+    position: absolute;
+    margin-top: 13px;
+    font-weight: 400;
+    font-size: 15px;
+}
+
+
+
+.contacts-heading{
+    font-weight:700; 
+    margin:25px 25px 0px;
+    font-size: 16px;
+}
+.details-modification
+{
+    
+    
+    margin-left: 450px;
+    margin-top: 13px;
+    font-weight: 400;
+    display: inline-block;
+}
+.edit_action
+{
+    display: inline-block;
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+}
+.delete_action
+{
+    display: inline-block;
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+}
+.network-duke-heading
+{
+    margin: 0px;
+    margin-bottom: 5px;
+    font-weight: 600;
+    font-size: 25px;
+    
+}
+.network-duke-details 
+{
+    margin-bottom: 10px;
+}
+#display-pin-code,#display-state
+{
+    display:block;
+    margin:5px 0 0 64px;
+}
+
+.nav-img{
+    float: right;
+    width: 25px;
+    margin-top: 1px;
+    margin-right: 15px;
+}
+
+
+.address1
+{
+    display: inline-block;
+}
+.address2
+{
+    display: inline-block; 
+    margin-left: 5px;
+}
+.sub-address
+{
+    margin-left: 5px;
+}
+
+
+div.form1
+{
+    height:570px;
+    width:683px;
+    display:none;
+    position:absolute;
+    left:391px;
+    top:183px;
+    box-shadow:#333333 15px 10px 30px -5px ;
+}
+div.form1 label{
+    
+    display:inline-flex;
+    font-weight:700;
+    margin-left:23px;
+}
+
+div.form1 input{
+    display:inline-flex;
+    width:500px;
+    height:37px;
+    margin:12px 0px 16px 23px;
+    border:1px solid rgb(175,173,173);
+    border-radius:5px;
+}
+
+#Mobile,#landline
+{
+    width:240px;
+}
+
+#landline,#landlinelabel
+{
+    margin-left:4px;
+}
+
+#landlinespan,#mobilespan
+{
+   display:inline-block;
+}
+#lbslsp
+{
+    margin-left:4px;
+}
+#namelb
+{
+    margin-top:32px;
+}
+#Address
+{
+    height:85px;
+}
+
+#btn
+{
+    position:absolute;
+    top:505px;
+    left:500px;
+    height:45px;
+    width:130px;
+    background-color: #27A746;
+    border-width:0px;
+    border-radius:5px;
+    font-size: 17px;
+    text-align:center;
+    box-sizing:border-box;
+    padding-top:10px;
+    cursor: pointer;
+
+}
+
+span.imp
+{
+    color:red;
+    position:relative;
+    left:6px;
+}

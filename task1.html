@@ -1,0 +1,145 @@
+<html>
+    <head>
+        <title>fosterate-task-1</title>
+        <link rel="stylesheet" href="task1.css">
+        
+        
+    </head>
+
+    
+
+    <body >
+        <!--Heading-->
+        <h1 class="main-heading" id="d2">Fosterate</h1>
+
+        <!--navbar model-->
+        
+        <ul class="navbar">
+            <a class="nav-link active" id="home">HOME</a>
+            <a class="nav-link" id="add">+ADD</a>
+            
+                <img src="./blog-icon.png" alt="" class="nav-img" >
+        
+        </ul>
+        
+         
+            
+        
+
+        <h4 class="contacts-heading">CONTACTS</h4>
+
+    <div class="flex-container">
+        <ul class="contacts" id="contacts">
+            <li class="contact-details contact-active" id="contact1">
+                <ul  >
+                    <li class="contact-name" id="contact-name" >Harsha Vardhan Pendyala</li> 
+                    <li  id="phone-number">7777888855</li>
+                    <li  id="mail-id">harsha@fosterate.com</li>
+                </ul>
+            </li>
+            
+                
+            <li class="contact-details"id="contact2">
+                <ul >
+                    <li  class="contact-name" id="contact-name">Network Duke</li>
+                    <li  id="phone-number">7777888855</li>
+                    <li  id="mail-id">duke@fosterate.com</li>
+                </ul>
+            </li>
+                    
+                    
+               
+            <li id="contact3" class="contact-details">
+                <ul >
+                
+                    <li  class="contact-name" id="contact-name">Arshaque Mohammed</li>  
+                    <li  id="phone-number">7777888855</li>
+                    <li  id="mail-id">arshaque@fosterate.com</li>
+                </ul>
+                
+                
+            </li>
+
+            
+            
+
+        </ul>
+
+        <div class="display-contact" id="display-contact">
+            <h4 class="network-duke-heading" id="display-name" >Harsha Vardhan Pendyala</h4>
+            <ul>
+                <li class="network-duke-details ">Email:  <span id='display-email'>harsha@fosterate.com</span></li>
+                   <li class="network-duke-details " >Mobile:<span id="display-mobile">7777888855</span></li>
+                   <li class="network-duke-details ">Landline:<span id="display-landline"></span></li>
+                   <li class="network-duke-details ">Website:<span id="display-website"></span></li>
+                   <li>Address: 
+                       <span id="display-address">hyderabad</span>
+                       <span id="display-state">Telangana</span>
+                       <span id="display-pin-code">500061</span>
+                    </li>
+            </ul>
+
+        </div>
+
+        
+
+        <div class="details-modification" id="details-modification">
+            <a href="#" id="edit_action" class="edit_action">
+                <img src="./Edit-icon.png"  width=19px height=19px>
+                <span id="edit" class="edit">EDIT</span>
+            </a>
+            
+            <a href="#" id="delete_action" class="delete_action">
+                <img src="./delete1.png"  width=15px height=22px>
+                <span id="delete" class="delete">DELETE</span>
+            </a>
+            
+        </div>
+        
+
+       
+
+    </div>
+    <div id="form1" class="form1">
+
+        <form action="" id="form" >
+            <!--name-->
+           <label for="Name" id="namelb">Name<span class="imp">*</span></label><br>
+           <input type="text" name="Name" id="name" required><br>
+
+            <!--email-->
+           <label for="Email">Email<span class="imp">*</span></label><br>
+           <input type="email" name="Email" id="email" required><br>
+
+           <!--mobile-->
+           <span id="mobilespan"><label for="Moblie">Mobile<span class="imp">*</span></label><br>
+            <input type="tel" name="Mobile" id="mobile" required maxlength="10" pattern="[0-9]{10}"><br></span>
+
+            <!--landline-->
+           <span id="landlinespan"><label for="Landline" id="landlinelabel">Landline</label><br>
+            <input type="number" name="Landline" id="landline"><br></span><br>
+           
+            <!--website-->
+           <label for="Website">Website</label><br>
+           <input type="text" name="Website" id="website"><br>
+
+           <!--address-->
+           <label for="Address">Address</label><br>
+           <input type="" name="Address" id="address"><br>
+
+           <input type="submit" id="btn" value="Add">
+           <!--<input type="submit" id="btne" value="Add">-->
+
+           
+        </form>
+    </div>
+
+    <script src="task1.js">
+        
+    </script>
+         
+            
+
+
+    </body>
+</html>
