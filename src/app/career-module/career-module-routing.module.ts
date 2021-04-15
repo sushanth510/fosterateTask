@@ -11,7 +11,7 @@ const routes: Routes = [
   
   {path:"add",component:AddComponent},
   {path:"",redirectTo:"home",pathMatch:"full"},
-  {path:"edit",component:EditComponent},
+  
   {path:"edit/:id",component:EditComponent}
   
   

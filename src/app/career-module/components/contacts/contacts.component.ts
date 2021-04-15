@@ -25,30 +25,19 @@ export class ContactsComponent implements OnInit,OnChanges {
     this.contacts=this.cds.carray;
     this.ar.params.subscribe(params => {
       this.currentActiveId = params["id"];
-      console.log("curent id",this.currentActiveId); 
+       
 
   });
   
   }
   ngOnChanges(changes:SimpleChanges){
        
-      
-    }
-    updateId(id:any){
-    
-    
-      this.currentActiveId=id;
-      
-      this.rt.navigateByUrl("/home/"+id)
-     
-     
-      
-  
-    }
-   
-    
-    
   }
+  updateId(id:any):void{
+    this.currentActiveId=id;
+    this.rt.navigateByUrl("/home/"+id)
+  }
+}
   
   
  

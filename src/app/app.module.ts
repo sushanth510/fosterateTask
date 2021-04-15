@@ -9,18 +9,11 @@ import {RouterModule} from '@angular/router';
 
 import { CarrierModuleModule } from './career-module/career-module.module';
 import {AppComponent,NavigationComponent} from './components'
-// import {HomeComponent,AddComponent,ContactsComponent,DisplayContactComponent,DetailsModificationComponent,FormComponent,EditComponent,ContactsDataService} from './career-module'
 
 @NgModule({
   declarations: [
     AppComponent,
-    // HomeComponent,
-    // AddComponent,
-    // ContactsComponent,
-    // DisplayContactComponent,
-    // DetailsModificationComponent,
-    // FormComponent,
-    // EditComponent,
+    
     NavigationComponent
   ],
   imports: [

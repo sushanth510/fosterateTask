@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ContactsDataService } from '../../service';
 
 
 @Component({
@@ -8,10 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddComponent implements OnInit {
   activeIdAdd:number;
+  contacts=new Array();
 
-  constructor() { }
+  constructor(private cds:ContactsDataService) { }
 
   ngOnInit(): void {
+    this.contacts=this.cds.carray
   }
 
 }

@@ -10,9 +10,9 @@ import {ActivatedRoute, Router} from '@angular/router'
 })
 export class FormComponent implements OnInit {
   contactForm:FormGroup ;
-  formdata: any;
+  formdata: object;
   id_counter=3;
-  href:any;
+  href:string;
   carray:number[]
   currentActiveId:number
   submit_boolean:boolean=true;
@@ -104,54 +104,44 @@ export class FormComponent implements OnInit {
     else{
       this.CheckValid(this.contactForm,true);
     }
-    
-      
-    
-    
-    }
-    CheckValid(group:FormGroup=this.contactForm,submittedempty:boolean=false):void
-    {
-
-      
-     Object.keys(group.controls).forEach( (key:string)=>
-     {
-       const abstractcontrol=group.get(key);
-       if(abstractcontrol instanceof FormGroup)
-       {
-         this.CheckValid(abstractcontrol);
-       }
-       else
-       {
-
-        this.formerrors[key]="";
-
-        if(submittedempty==true)
-        {
-           abstractcontrol.markAsDirty();
-        }
-
-        if(abstractcontrol && !abstractcontrol.valid && (abstractcontrol.dirty || abstractcontrol.touched))
-        {
-       
-        const messages=this.validationmessages[key];
-
-         for(const errorkey in abstractcontrol.errors)
-         {
-           
-           if(errorkey)
-           {
-             this.formerrors[key]+=messages[errorkey]+" ";
-             
-           }
-         }
-         
-       }}
-     }
-     )
-    
   }
+  CheckValid(group:FormGroup=this.contactForm,submittedempty:boolean=false):void
+  {
+    Object.keys(group.controls).forEach( (key:string)=>
+    {
+      const abstractcontrol=group.get(key);
+      if(abstractcontrol instanceof FormGroup)
+      {
+        this.CheckValid(abstractcontrol);
+      }
+      else
+      {
 
+      this.formerrors[key]="";
 
+      if(submittedempty==true)
+      {
+          abstractcontrol.markAsDirty();
+      }
 
+      if(abstractcontrol && !abstractcontrol.valid && (abstractcontrol.dirty || abstractcontrol.touched))
+      {
+      
+      const messages=this.validationmessages[key];
+
+        for(const errorkey in abstractcontrol.errors)
+        {
+          
+          if(errorkey)
+          {
+            this.formerrors[key]+=messages[errorkey]+" ";
+            
+          }
+        }
+        
+      }}
+    }
+    )
+  }
 }
 

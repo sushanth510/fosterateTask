@@ -26,27 +26,23 @@ export class DetailsModificationComponent implements OnInit {
       
 
   });
-    
-
-    this.rt.navigateByUrl("/edit/"+this.currentActiveId)
-  
-  
+  this.rt.navigateByUrl("/edit/"+this.currentActiveId)
   }
-  delete(){
+  delete():void{
     this.delete_boolean+=1;
     this.ar.params.subscribe(params => {
       this.currentActiveId = params["id"];
-      });
-    this.cds.delete_contact(this.currentActiveId)
+  });
+  this.cds.delete_contact(this.currentActiveId)
 
-     
-    this.contacts=this.cds.carray
-    if(this.contacts.length>=1){
-      this.currentActiveId=this.contacts[0]["c_id"]
-    }
-    if(this.currentActiveId!=undefined){
-        this.rt.navigateByUrl("/home/"+this.currentActiveId)
-    }
+    
+  this.contacts=this.cds.carray
+  if(this.contacts.length>=1){
+    this.currentActiveId=this.contacts[0]["c_id"]
+  }
+  if(this.currentActiveId!=undefined){
+      this.rt.navigateByUrl("/home/"+this.currentActiveId)
+  }
   }
   
 }

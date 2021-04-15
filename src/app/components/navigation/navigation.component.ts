@@ -11,7 +11,7 @@ export class NavigationComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  of_activer(){
+  of_activer():void{
     this.activer=0;
   }
 

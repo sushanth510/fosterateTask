@@ -1,9 +1,6 @@
 import { Injectable } from '@angular/core';
 import {contact} from '../model/contact.model'
 
-
-
-
 @Injectable({
   providedIn: 'root'
 })
@@ -23,7 +20,7 @@ length=this.carray.push(this.obj1)
 length1=this.carray.push(this.obj2)
 length2=this.carray.push(this.obj3)
 id_generator=3;
-newcontact(obj:object){
+newcontact(obj:object):void{
   this.id_generator+=1
   
   this.obj4 = new contact(this.id_generator,obj["name"],obj["email"],obj["mobile"],null,"","")
@@ -31,7 +28,7 @@ newcontact(obj:object){
   
   
 }
-delete_contact(id:number){
+delete_contact(id:number):void{
   for(var i=0;i<this.carray.length;i++)
     {
         if(this.carray[i]["c_id"]==id)
@@ -43,7 +40,7 @@ delete_contact(id:number){
     console.log("----------------------------------------------------------")
 
 }
-update_contact(id:number,obj:object){
+update_contact(id:number,obj:object):void{
   for(var i=0;i<this.carray.length;i++)
     {
         if(this.carray[i]["c_id"]==id)

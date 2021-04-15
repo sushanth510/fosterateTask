@@ -8,14 +8,12 @@ import {Router} from '@angular/router'
 })
 export class EditComponent implements OnInit {
 
-  href:any;
+  href:string;
   constructor(private rt:Router) { }
 
   ngOnInit(): void {
     console.log("entered edit component")
     this.href=this.rt.url
     console.log("href in edit",this.href)
-
   }
-
 }

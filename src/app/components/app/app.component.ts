@@ -8,7 +8,7 @@ import { Router,ActivatedRoute } from '@angular/router';
 })
 export class AppComponent implements OnInit{
   title = 'Fosterate';
-  href:any
+  href:string
   
   currentActiveId:number;
   constructor(private rt:Router,private ar:ActivatedRoute){
@@ -21,10 +21,7 @@ export class AppComponent implements OnInit{
       this.currentActiveId=params["id"]
 
       this.href=this.rt.url;
-    
-      console.log("-------------------passed the condition",this.href)
-      
-  })
+    })
 
 }
     
