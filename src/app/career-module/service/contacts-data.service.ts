@@ -12,14 +12,14 @@ export class ContactsDataService {
   constructor() { 
     
   }
-obj1=new contact(1,"Harsha Vardhan Pendyala","harsha@fosterate.com",7777888855,null,"","hyderabad");
-obj2=new contact(2,"Network Duke","duke@fosterate.com",7777888855,null,"","hyderabad");
-obj3=new contact(3,"Arshaque Mohammed","arshaque@fosterate.com",7777888855,null,"","hyderabad");
-obj4={}
-length=this.carray.push(this.obj1)
-length1=this.carray.push(this.obj2)
-length2=this.carray.push(this.obj3)
-id_generator=3;
+// obj1=new contact(1,"Harsha Vardhan Pendyala","harsha@fosterate.com",7777888855,null,"","hyderabad");
+// obj2=new contact(2,"Network Duke","duke@fosterate.com",7777888855,null,"","hyderabad");
+// obj3=new contact(3,"Arshaque Mohammed","arshaque@fosterate.com",7777888855,null,"","hyderabad");
+ obj4={}
+// length=this.carray.push(this.obj1)
+// length1=this.carray.push(this.obj2)
+// length2=this.carray.push(this.obj3)
+id_generator=0;
 newcontact(obj:object):void{
   this.id_generator+=1
   

@@ -25,23 +25,28 @@ export class HomeComponent implements OnInit {
     this.ar.params.subscribe(params=>{
       this.currentId=params.id
       this.contact_counter=0
-      for(let contact of this.contacts){
-        console.log(contact["c_id"])
-        if(this.currentId!=contact["c_id"]){
-            this.contact_counter+=1
-        }
-        else{
-          this.existed_contact=true
-          console.log("contact existed")
-          break
-        }
+      if(this.currentId==undefined){
+        this.existed_contact=true
       }
-      console.log(this.contact_counter)
-      if(this.contact_counter==this.contacts.length){
-        this.existed_contact=false;
-        console.log("no contact")
+      else{
+        for(let contact of this.contacts){
+        
+          if(this.currentId!=contact["c_id"]){
+              this.contact_counter+=1
+          }
+          else{
+            this.existed_contact=true
+            break
+          }
+        }
+        console.log(this.contact_counter)
+        if(this.contact_counter==this.contacts.length){
+          this.existed_contact=false;
+        }
+
       }
-      console.log("-----",this.existed_contact)
+      
+      
     })
     
     if(this.href=="/home" && this.contacts.length>0)
