@@ -110,12 +110,8 @@ export class FormComponent implements OnInit {
     Object.keys(group.controls).forEach( (key:string)=>
     {
       const abstractcontrol=group.get(key);
-      if(abstractcontrol instanceof FormGroup)
-      {
-        this.CheckValid(abstractcontrol);
-      }
-      else
-      {
+      
+      
 
       this.formerrors[key]="";
 
@@ -140,7 +136,7 @@ export class FormComponent implements OnInit {
         }
         
       }}
-    }
+   
     )
   }
 }
