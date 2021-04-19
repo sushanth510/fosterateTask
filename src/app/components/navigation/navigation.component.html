@@ -1,14 +1,14 @@
 <ul class="nav-bar1">
     <li>
-      <a class="nav-link1 active1" routerLink="home" routerLinkActive="active1" [ngClass]="{'active1':(activer==1)}" id="home" (click)="of_activer()" >HOME</a>
+      <a class="nav-link1" routerLink="home" routerLinkActive="active1"  id="home"  >HOME</a>
     </li>
     <li>
-      <a class="nav-link1" routerLink="add" routerLinkActive="active1" (click)="of_activer()" id="add" >+ADD</a>
+      <a class="nav-link1" routerLink="add" routerLinkActive="active1"  id="add" >+ADD</a>
     </li>
-  <img src="./assets/blog-icon.png" alt="" class="nav-img1" >
+    <li class="nav-img1">
+      <img src="./assets/blog-icon.png" alt=""  >
+    </li>
 </ul>
-
-  <div>
-    <!-- place holder of selectors -->
-    <router-outlet></router-outlet>
- </div>
+<div>
+  <router-outlet></router-outlet>
+</div>

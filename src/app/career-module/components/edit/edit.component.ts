@@ -1,19 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from '@angular/router'
-
+import { Router } from '@angular/router'
 @Component({
   selector: 'app-edit',
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.scss']
 })
 export class EditComponent implements OnInit {
-
-  href:string;
-  constructor(private rt:Router) { }
-
+  currentLink:string;
+  constructor(private router:Router) { }
   ngOnInit(): void {
-    console.log("entered edit component")
-    this.href=this.rt.url
-    console.log("href in edit",this.href)
+    this.currentLink=this.router.url
   }
 }

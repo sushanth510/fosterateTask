@@ -1,38 +1,36 @@
 <div class='form'>
+  <form action="" id="frm" [formGroup]="contactForm" (ngSubmit)="senddata()">
+    <label for="Name" id="namelabel">Name<span class="imp">*
+      <span class="errormessage" *ngIf='!this.contactForm.valid'>{{formErrors.name}}</span>
+    </span></label><br>
+    <input type="text" id="name" formControlName="name" (blur)='validate()'><br>
+    
+    <label for="Email">Email<span class="imp">*
+      <span class="errormessage" *ngIf='!this.contactForm.valid'>{{formErrors.email}}</span>
+    </span></label><br>
+    <input type="email"  id="email" formControlName="email" (blur)='validate()'><br>
+    <div class="row">
+        <div class="col-6">
+          <span id="mobilecontainer"><label for="Moblie">Mobile<span class="imp">*
+              <span class="errormessage" *ngIf='!this.contactForm.valid'>{{formErrors.mobile}}</span>
+            </span></label><br>
+              <input type="number" formControlName="mobile"  id="mobile" (blur)='validate()' ><br></span>
+        </div>
+        <div class="col-6">
+          <span id="landlinecontainer"><label for="Landline" id="landlinelabel">Landline</label><br>
+          <input type="number" formControlName="landline" id="landline"><br></span><br>
+        </div>
+    </div>
+    
 
-    <form action="" id="frm" [formGroup]="contactForm" (ngSubmit)="senddata()">
+    
+    <label for="Website">Website</label><br>
+    <input type="text" name="Website" id="website" formControlName="website"><br>
 
-              <label for="Name" id="namelabel">Name<span class="imp">*
-                <span class="errormessage" *ngIf='!this.contactForm.valid'>{{formerrors.name}}</span>
-              </span></label><br>
-              <input type="text" id="name" formControlName="name" (blur)='CheckValid()'><br>
-              
-              <label for="Email">Email<span class="imp">*
-                <span class="errormessage" *ngIf='!this.contactForm.valid'>{{formerrors.email}}</span>
-              </span></label><br>
-              <input type="email"  id="email" formControlName="email" (blur)='CheckValid()'><br>
-              <div class="row">
-                  <div class="col-6">
-                    <span id="mobilecontainer"><label for="Moblie">Mobile<span class="imp">*
-                        <span class="errormessage" *ngIf='!this.contactForm.valid'>{{formerrors.mobile}}</span>
-                      </span></label><br>
-                       <input type="number" formControlName="mobile"  id="mobile" (blur)='CheckValid()' ><br></span>
-                  </div>
-                  <div class="col-6">
-                    <span id="landlinecontainer"><label for="Landline" id="landlinelabel">Landline</label><br>
-                    <input type="number" formControlName="landline" id="landline"><br></span><br>
-                  </div>
-              </div>
-              
-   
-              
-              <label for="Website">Website</label><br>
-              <input type="text" name="Website" id="website" formControlName="website"><br>
-   
-              <label for="Address">Address</label><br>
-              <input type="text" id="address" formControlName="address"><br>
-               
-              <button type="submit" id="btn">Add</button>
+    <label for="Address">Address</label><br>
+    <input type="text" id="address" formControlName="address"><br>
+      
+    <button type="submit" id="btn">Add</button>
 
    </form>
 

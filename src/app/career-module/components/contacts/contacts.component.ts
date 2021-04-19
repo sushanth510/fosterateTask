@@ -1,41 +1,26 @@
-import { Component, OnInit ,EventEmitter, Output, Input, SimpleChanges,OnChanges} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ContactsDataService } from '../../service/contacts-data.service';
-import {Router,ActivatedRoute} from '@angular/router'
-
+import { Router,ActivatedRoute } from '@angular/router'
 @Component({
   selector: 'app-contacts',
   templateUrl: './contacts.component.html',
   styleUrls: ['./contacts.component.scss']
 })
-export class ContactsComponent implements OnInit,OnChanges {
+export class ContactsComponent implements OnInit {
   contacts=new Array()
   currentActiveId:number=1 ;
-  delete_boolean:number;
-
-  
-  
-  
-  constructor(private cds:ContactsDataService,private rt:Router,private ar:ActivatedRoute) { 
-   
-  
-  }
-
+  constructor(private dataService:ContactsDataService,private router:Router,private activatedRoute:ActivatedRoute) { 
+   }
   ngOnInit(): void {
-
-    this.contacts=this.cds.carray;
-    this.ar.params.subscribe(params => {
+    this.activatedRoute.params.subscribe(params => {
+      this.contacts=this.dataService.get_data();
       this.currentActiveId = params["id"];
-       
-
   });
+  }
   
-  }
-  ngOnChanges(changes:SimpleChanges){
-       
-  }
   updateId(id:any):void{
     this.currentActiveId=id;
-    this.rt.navigateByUrl("/home/"+id)
+    this.router.navigateByUrl("/home/"+id)
   }
 }
   

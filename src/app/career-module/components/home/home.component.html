@@ -1,24 +1,19 @@
-
-<div *ngIf="contacts.length!=0 && existed_contact==true">
+<div *ngIf="contacts.length!=0 && existedContact==true">
   <h4 class="contacts-heading">CONTACTS</h4>
   <div class="flex-container" >
       <app-contacts class="contacts" ></app-contacts>
       <app-display-contact class="display-contact" ></app-display-contact>
-      <app-details-modification class="details-modification" ></app-details-modification>
   </div>   
-
 </div>
-
-
- <div *ngIf="contacts.length==0" class="text-primary text-center ">
+<div *ngIf="contacts.length==0 && existedContact==true" class="text-primary text-center ">
   <h1>No contacts existed.</h1>
   <h1>click on "+ADD" to add new contact.</h1>
  </div>
+<div *ngIf="existedContact==false" class="text-primary text-center">
+    <h1>invalid contact.</h1>
+    <h1>Recheck the link correctly.</h1>
+</div>
 
- <div *ngIf="existed_contact==false" class="text-primary text-center">
-   <h1>invalid contact.</h1>
-   <h1>Recheck the link correctly.</h1>
-
- </div>
+ 
         
     

@@ -6,13 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navigation.component.scss']
 })
 export class NavigationComponent implements OnInit {
-  activer=1;
   constructor() { }
-
   ngOnInit(): void {
   }
-  of_activer():void{
-    this.activer=0;
-  }
-
 }

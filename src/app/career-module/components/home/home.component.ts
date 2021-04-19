@@ -1,58 +1,41 @@
 import { Component, OnInit } from '@angular/core';
-
 import { ContactsDataService } from '../../service/contacts-data.service';
-import {Router,ActivatedRoute} from '@angular/router';
-
+import { Router, ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
   contacts:object[];
-  href:string;
-  currentId:number=1;
-  existed_contact:boolean;
-  contact_counter:number;
-
-  constructor(private cds:ContactsDataService,private rt:Router,private ar :ActivatedRoute) { }
-
+  currentLink:string;
+  currentId:number;
+  existedContact:boolean;
+  contactCounter:number;
+  index:number;
+  constructor(private dataservice:ContactsDataService,private router:Router,private activatedRoute :ActivatedRoute) { }
   ngOnInit(): void {
-
-    this.contacts=this.cds.carray;
-    this.href=this.rt.url;
-    this.ar.params.subscribe(params=>{
+    this.currentLink=this.router.url;
+    this.activatedRoute.params.subscribe(params=>{
+      this.contacts=this.dataservice.get_data();
+      console.log("contacts with link",this.contacts)
       this.currentId=params.id
-      this.contact_counter=0
+      this.contactCounter=0
       if(this.currentId==undefined){
-        this.existed_contact=true
+        this.existedContact=true
       }
       else{
-        for(let contact of this.contacts){
-        
-          if(this.currentId!=contact["c_id"]){
-              this.contact_counter+=1
-          }
-          else{
-            this.existed_contact=true
-            break
-          }
+       this.index=this.contacts.findIndex(
+          (contact)=>contact["id"]==this.currentId
+        )
+        console.log("index in home",this.index)
+        if(this.index==-1){
+          this.existedContact=false
         }
-        console.log(this.contact_counter)
-        if(this.contact_counter==this.contacts.length){
-          this.existed_contact=false;
+        else{
+          this.existedContact=true
         }
-
       }
-      
-      
     })
-    
-    if(this.href=="/home" && this.contacts.length>0)
-      this.rt.navigate(["/home",this.contacts[0]["c_id"]]);
-    
   }
-  
-
 }

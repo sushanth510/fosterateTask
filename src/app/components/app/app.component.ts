@@ -1,6 +1,4 @@
-import { Component,OnInit } from '@angular/core';
-import { Router,ActivatedRoute } from '@angular/router';
-
+import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -8,22 +6,8 @@ import { Router,ActivatedRoute } from '@angular/router';
 })
 export class AppComponent implements OnInit{
   title = 'Fosterate';
-  href:string
-  
-  currentActiveId:number;
-  constructor(private rt:Router,private ar:ActivatedRoute){
-    
-    
-
+  constructor(){
   }
   ngOnInit(): void {
-    this.ar.params.subscribe(params=>{
-      this.currentActiveId=params["id"]
-
-      this.href=this.rt.url;
-    })
-
-}
-    
-  
+  }
 }

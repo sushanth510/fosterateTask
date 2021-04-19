@@ -3,7 +3,6 @@ ul{
     margin: 0px;
     padding: 0px;
 }
-
 .display-contact{
     display: inline-block;
     margin-left: 100px;
@@ -28,4 +27,29 @@ ul{
 {
     display:block;
     margin:5px 0 0 64px;
+}
+.details-modification
+{
+    display: inline-block;
+    margin-left: 400px;
+    margin-top: 13px;
+    font-weight: 400;
+}
+.edit_action
+{
+    display: inline-block;
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+}
+.delete_action
+{
+    display: inline-block;
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+    margin-left: 4px;
+}
+.delete_img{
+    margin-bottom: 10px;
 }
