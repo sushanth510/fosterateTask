@@ -1,19 +1,12 @@
-<div *ngIf="contacts.length!=0 && existedContact==true">
-  <h4 class="contacts-heading">CONTACTS</h4>
-  <div class="flex-container" >
-      <app-contacts class="contacts" ></app-contacts>
-      <app-display-contact class="display-contact" ></app-display-contact>
-  </div>   
+<div *ngIf="contactsExisting">
+  <h4 class="contactsHeading">CONTACTS</h4>
+  <div class="flexContainer">
+    <app-contacts class="contacts"></app-contacts>
+    <app-display-contact class="displayContact"></app-display-contact>
+  </div>
 </div>
-<div *ngIf="contacts.length==0 && existedContact==true" class="text-primary text-center ">
-  <h1>No contacts existed.</h1>
-  <h1>click on "+ADD" to add new contact.</h1>
- </div>
-<div *ngIf="existedContact==false" class="text-primary text-center">
-    <h1>invalid contact.</h1>
-    <h1>Recheck the link correctly.</h1>
+<div *ngIf="!contactsExisting" class="text-primary text-center mt-5">
+  <img src="./assets/images/icon.jpg" alt="" width="10%"  />
+  <h3>No contacts existed.</h3>
+  <h3>click on "+ADD" to add new contact.</h3>
 </div>
-
- 
-        
-    

@@ -1,35 +1,42 @@
 import { Injectable } from '@angular/core';
-import { contact } from '../model/contact.model'
+import { Contact } from '../model/contact.model'
 @Injectable({
   providedIn: 'root'
 })
 export class ContactsDataService {
-  contactsArray=new Array()
+  contactsArray:Array<Contact>=[];
   idGenerator=0;
   index:number;
-  contact:object
+  contact:Contact;
   constructor() { 
+   
   }
-  get_data():object[]{
-    return this.contactsArray
+  getData(): { contactlist: Array<Contact>; status: boolean } {
+    if (this.contactsArray.length == 0) {
+      return { contactlist: null, status: false };
+    } else {
+      return { contactlist: this.contactsArray, status: true };
+    }
   }
-  
-  newcontact(new_contact:object):void{
-  this.idGenerator+=1
-  new_contact["id"]=this.idGenerator;
-  this.contact = new contact(new_contact)
-  this.contactsArray.push(this.contact)
+    
+  addContact(new_contact:object):void{
+    if(new_contact!=null){
+      this.idGenerator+=1;
+      new_contact["id"]=this.idGenerator;
+      this.contact=new Contact(new_contact)
+      this.contactsArray.push(this.contact);
+    }
   }
 
-  delete_contact(id:number):void{
+  deleteContact(id:number):void{
     this.index=this.contactsArray.findIndex(
       (contact)=>contact.id==id
     )
     this.contactsArray.splice(this.index,1);
   }
   
-  update_contact(id:number,obj:object):void{
-    obj["id"]=id;
+  updateContact(id:number,obj:Contact):void{
+    
     this.index=this.contactsArray.findIndex(
       (contact)=>contact.id==id
     )

@@ -1,16 +1,15 @@
-.flex-container
-{
-    display: flex;
-    flex-direction: row;
+.flexContainer {
+  display: flex;
+  flex-direction: row;
 }
-.contacts-heading{
-    font-weight:700; 
-    margin:25px 25px 0px;
-    font-size: 16px;
+.contactsHeading {
+  font-weight: 700;
+  margin: 25px 25px 0px;
+  font-size: 16px;
 }
-.display-contact{
-    margin-left: 0px;
+.displayContact {
+  margin-left: 0px;
 }
-.center{
-    margin-left: 100px;
+.center {
+  margin-left: 100px;
 }

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
-import { ContactsDataService } from '../../service/contacts-data.service';
+import { ContactsDataService } from '../../service';
 import { ActivatedRoute, Router } from '@angular/router'
+import { Contact } from '../../model/contact.model';
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
@@ -9,13 +10,12 @@ import { ActivatedRoute, Router } from '@angular/router'
 })
 export class FormComponent implements OnInit {
   contactForm:FormGroup ;
-  formData: object;
-  idCounter=3;
+  formData: Contact;
   currentLink:string;
-  contactsArray:object[]
+  contactsArray:Array<Contact>
   currentActiveId:number
-  submitBoolean:boolean=true;
   index:number;
+  receivedDataObject:object;
   formErrors=
   {
     'name':'',
@@ -39,7 +39,7 @@ export class FormComponent implements OnInit {
      'max':' (mobile.no should be of 10 digits)'
    }
   }
-  constructor(private formbuilder:FormBuilder,private dataService:ContactsDataService,private router:Router,private activatedRoute:ActivatedRoute) {
+  constructor(private formbuilder:FormBuilder,private contactsDataservice:ContactsDataService,private router:Router,private activatedRoute:ActivatedRoute) {
   this.contactForm=formbuilder.group({
     name:['',Validators.required],
     email:['',[Validators.required,Validators.email]],
@@ -54,9 +54,12 @@ export class FormComponent implements OnInit {
     this.activatedRoute.params.subscribe(params=>{
       this.currentActiveId=params.id;
     })
-    var path="/edit/"+this.currentActiveId
+    var path="/home/edit/"+this.currentActiveId
     if(this.currentLink==path){
-      this.contactsArray=this.dataService.get_data();
+      this.receivedDataObject=this.contactsDataservice.getData()
+      if(this.receivedDataObject["status"]==true){
+        this.contactsArray=this.receivedDataObject["contactlist"]
+      }
       this.index=this.contactsArray.findIndex(
         (contact)=>contact["id"]==this.currentActiveId
       )
@@ -68,21 +71,21 @@ export class FormComponent implements OnInit {
         website:this.contactsArray[this.index]["website"],
         addresss:this.contactsArray[this.index]["address"]
       })
-        
     }
   }
 
   senddata():void{
     if(this.contactForm.valid){
-      this.submitBoolean=true
-      let path1="/edit/"+this.currentActiveId
+      let path="/home/edit/"+this.currentActiveId
       this.formData=this.contactForm.value;
-      if(this.currentLink==path1){
-        this.dataService.update_contact(this.currentActiveId,this.formData)
+      if(this.currentLink==path){
+        this.formData["id"]=this.currentActiveId;
+        
+        this.contactsDataservice.updateContact(this.currentActiveId,this.formData);
       }
       else{
-        this.dataService.newcontact(this.formData)
-        this.currentActiveId=this.dataService.idGenerator;
+        this.contactsDataservice.addContact(this.formData)
+        this.currentActiveId=this.contactsDataservice.idGenerator;
       }
       this.router.navigateByUrl("/home/"+this.currentActiveId)
     }
@@ -95,16 +98,16 @@ export class FormComponent implements OnInit {
   {
     Object.keys(group.controls).forEach( (key:string)=>
     {
-      const abstractcontrol=group.get(key);
+      const keyControl=group.get(key);
       this.formErrors[key]="";
       if(submittedEmpty==true)
       {
-          abstractcontrol.markAsDirty();
+        keyControl.markAsDirty();
       }
-      if(abstractcontrol && !abstractcontrol.valid && (abstractcontrol.dirty || abstractcontrol.touched))
+      if(keyControl && !keyControl.valid && (keyControl.dirty || keyControl.touched))
       {
       const messages=this.validationMessages[key];
-        for(const errorkey in abstractcontrol.errors)
+        for(const errorkey in keyControl.errors)
         {
           if(errorkey)
           {

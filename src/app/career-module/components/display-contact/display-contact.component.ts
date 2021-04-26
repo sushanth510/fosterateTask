@@ -1,51 +1,64 @@
 import { Component, OnInit } from '@angular/core';
-import {  ContactsDataService } from '../../service/contacts-data.service';
-import { ActivatedRoute, Router } from '@angular/router'
+import { ContactsDataService } from '../../service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Contact } from '../../model/contact.model';
+
 @Component({
   selector: 'app-display-contact',
   templateUrl: './display-contact.component.html',
-  styleUrls: ['./display-contact.component.scss']
+  styleUrls: ['./display-contact.component.scss'],
 })
-export class DisplayContactComponent implements OnInit{
-  contacts: object[] ;
-  contact:object;
-  current_id:number;
-  currentActiveId:number;
-  constructor(private dataService:ContactsDataService,private activatedRoute:ActivatedRoute,private router:Router) { 
-  }
-  
+export class DisplayContactComponent implements OnInit {
+  contacts: Array<Contact>;
+  contact: Contact;
+  currentActiveId: number;
+  index: number;
+  receivedDataObject: object;
+  constructor(
+    private contactsDataservice: ContactsDataService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router
+  ) {}
+
   ngOnInit(): void {
-    
-    this.activatedRoute.params.subscribe(params => {
-      this.contacts = this.dataService.get_data()
-      this.current_id=params["id"]
-      for(let c of this.contacts){
-        if(c["id"]==this.current_id){
-          this.contact=c;
-          break
-        }
+    this.activatedRoute.params.subscribe((params) => {
+      this.receivedDataObject = this.contactsDataservice.getData();
+      if (this.receivedDataObject['status'] == true) {
+        this.contacts = this.receivedDataObject['contactlist'];
       }
-    })
-   }
-
-   edit(){
-    this.activatedRoute.params.subscribe(params => {
-      this.currentActiveId = params["id"];
-  });
-  this.router.navigateByUrl("/edit/"+this.currentActiveId)
+      this.currentActiveId = params['id'];
+      this.contact = this.contacts.find(
+        (contact) => contact.id == this.currentActiveId
+      );
+      
+    });
   }
 
-  delete():void{
-    this.activatedRoute.params.subscribe(params => {
-      this.currentActiveId = params["id"];
-  });
-  this.dataService.delete_contact(this.currentActiveId)
-  this.contacts=this.dataService.get_data()
-  if(this.contacts.length>=1){
-    this.currentActiveId=this.contacts[0]["id"]
+  edit() {
+    this.activatedRoute.params.subscribe((params) => {
+      this.currentActiveId = params['id'];
+    });
+    this.router.navigateByUrl('/home/edit/' + this.currentActiveId);
   }
-  if(this.currentActiveId!=undefined){
-      this.router.navigateByUrl("/home/"+this.currentActiveId)
-  }
+
+  delete(): void {
+    this.activatedRoute.params.subscribe((params) => {
+      this.currentActiveId = params['id'];
+    });
+    this.contactsDataservice.deleteContact(this.currentActiveId);
+    this.receivedDataObject = this.contactsDataservice.getData();
+    if (this.receivedDataObject['status']) {
+      this.contacts = this.receivedDataObject['contactlist'];
+      if (this.contacts.length >= 1) {
+        this.currentActiveId = this.contacts[0]['id'];
+      }
+  
+      if (this.currentActiveId != undefined) {
+        this.router.navigateByUrl('/home/' + this.currentActiveId);
+      }
+    }
+    else{
+      this.router.navigateByUrl('/home')
+    }
   }
 }

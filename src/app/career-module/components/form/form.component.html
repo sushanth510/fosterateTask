@@ -1,37 +1,34 @@
-<div class='form'>
-  <form action="" id="frm" [formGroup]="contactForm" (ngSubmit)="senddata()">
-    <label for="Name" id="namelabel">Name<span class="imp">*
-      <span class="errormessage" *ngIf='!this.contactForm.valid'>{{formErrors.name}}</span>
-    </span></label><br>
-    <input type="text" id="name" formControlName="name" (blur)='validate()'><br>
-    
-    <label for="Email">Email<span class="imp">*
-      <span class="errormessage" *ngIf='!this.contactForm.valid'>{{formErrors.email}}</span>
-    </span></label><br>
-    <input type="email"  id="email" formControlName="email" (blur)='validate()'><br>
-    <div class="row">
-        <div class="col-6">
-          <span id="mobilecontainer"><label for="Moblie">Mobile<span class="imp">*
-              <span class="errormessage" *ngIf='!this.contactForm.valid'>{{formErrors.mobile}}</span>
-            </span></label><br>
-              <input type="number" formControlName="mobile"  id="mobile" (blur)='validate()' ><br></span>
-        </div>
-        <div class="col-6">
-          <span id="landlinecontainer"><label for="Landline" id="landlinelabel">Landline</label><br>
-          <input type="number" formControlName="landline" id="landline"><br></span><br>
-        </div>
+<div class="mt-4">
+  <form [formGroup]="contactForm" (ngSubmit)="senddata()" class="shadow1">
+    <div class="form-group">
+      <label for="Name" class="mt-4 fw-bold">Name<span class="text-danger ms-1">*</span>
+        <span class="text-danger" *ngIf='!this.contactForm.valid'>{{formErrors.name}}</span>
+      </label>
+      <input type="text" class="form-control rounded name" formControlName="name" (blur)='validate()'>
+      <label for="Email" class="fw-bold">Email<span class="text-danger ms-1">*</span>
+        <span class="text-danger" *ngIf='!this.contactForm.valid'>{{formErrors.email}}</span>
+      </label>
+      <input type="email" class="form-control rounded email"  formControlName="email" (blur)='validate()'>
+      <div class="d-flex">
+          <div >
+            <label for="Moblie" class="fw-bold">Mobile<span class="text-danger ms-1">*</span>
+                <span class="text-danger" *ngIf='!this.contactForm.valid'>{{formErrors.mobile}}</span>
+            </label>
+            <input type="number" formControlName="mobile"  class="form-control rounded mobile" (blur)='validate()' >
+          </div>
+          <div class="landLine"> 
+            <label for="Landline" class="fw-bold">Landline</label><br>
+            <input type="number" formControlName="landline" class="form-control rounded landline ">
+          </div>
+      </div>
+      <label for="Website" class="fw-bold">Website</label>
+      <input type="text" name="Website" class="form-control rounded website" formControlName="website">
+      <label for="Address" class="fw-bold">Address</label><br>
+      <textarea type="text" class="form-control rounded address" formControlName="address" cols="70" ></textarea>
+      <div class="d-flex justify-content-end">
+        <button type="submit" class="btn">Add</button>
+      </div>
     </div>
-    
-
-    
-    <label for="Website">Website</label><br>
-    <input type="text" name="Website" id="website" formControlName="website"><br>
-
-    <label for="Address">Address</label><br>
-    <input type="text" id="address" formControlName="address"><br>
-      
-    <button type="submit" id="btn">Add</button>
-
-   </form>
-
+  </form>
 </div>
+  

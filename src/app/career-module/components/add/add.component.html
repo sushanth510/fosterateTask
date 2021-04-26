@@ -1,13 +1,14 @@
 <div class="row">
-    <div *ngIf="contacts.length!=0 " class="col-sm-4 contacts">
-        <h4 class="contacts-heading">CONTACTS</h4>
-        <div  >
-            <app-contacts ></app-contacts>
-        </div>
+  <div *ngIf="contactsExisting" class="col-3 contacts">
+    <h4 class="contactsHeading">CONTACTS</h4>
+    <div>
+      <app-contacts></app-contacts>
     </div>
-    <div class="col-sm-4" *ngIf="contacts.length==0 ">
-    </div>
-    <div class="col-sm-4">
-        <app-form  ></app-form>
-    </div>
+  </div>
+  <div class="col-3" *ngIf="!contactsExisting">
+  
+  </div>
+  <div class="col-3">
+    <app-form></app-form>
+  </div>
 </div>

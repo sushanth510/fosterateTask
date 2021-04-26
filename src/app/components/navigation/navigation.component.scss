@@ -8,19 +8,10 @@ ul{
   padding: 0px;
 }
 li{
-  display: inline-block;
+  display: inline-flex;
   height:40px;
 }
-.main-heading1{
-  background-color:rgb(51,152,204);
-  color: white;
-  font-size: 60px;
-  font-weight: 100;
-  padding: 32px 32px;
-  padding-left: 10px;
-  margin: 0px;
-}
-.nav-bar1{
+.navBar1{
   list-style-type: none;
   margin: 0px;
   padding: 0px;
@@ -28,8 +19,8 @@ li{
   color: white;
   height:40px;
 }
-.nav-link1{
-  display: inline-block;
+.navLink1{
+  display: inline-flex;
   text-decoration:none;
   box-sizing: border-box;
   height:100%;
@@ -38,9 +29,8 @@ li{
   font-weight:700;
   cursor: pointer;
   color: white;
-  padding:8px 0 0 20px;
-  margin:0 0  0 20px;
-  
+  margin-left: 8px;;
+  padding:8px 0 0 15px;
 }
 .active1
 {
@@ -48,12 +38,10 @@ li{
   color: black;
   border-left:3px solid white;
 }
-.nav-img1{
+.navImg1{
   float: right;
   width: 25px;
+  height: 25px;
   margin-top: 8px;
   margin-right: 22px;
-}
-#add{
-  margin-left: 8px;
 }

@@ -1,90 +1,40 @@
-.form
-{
-    height:570px;
-    width:680px;
-    display:inline-flex;
-    box-shadow:#333333 0 0 30px;
-    margin-left:50px;
-    margin-top:19px;
+.btn{
+  background-color: #27a746;
+  height: 40px;
+  width: 130px;
+  margin-right: 20px;
 }
-input
-{
-   display:inline-flex;
-   width:500px;
-   height:33px;
-   margin-left:23px;
-   margin-top:12px;
-   margin-bottom:16px;
-   border:1px solid rgb(175,173,173);
-   border-radius: 5px;
+.shadow1{
+  width:  680px;
+  box-shadow: #333333 0 0 30px;
+  
 }
 
-label
-{
-    display:inline-flex;
-    font-weight:700;
-   
-    padding:0;
-    margin:0;
-    margin-left:23px;
+.form-group{
+  margin-left: 23px;
 }
-
-
-
-span.imp
-{
-    color:red;
-    position:relative;
-    left:6px;
+.warn {
+  color: red;
+  margin-left: 20px;
 }
-
-#mobile,#landline
-{
-    width:240px;
+input{
+  width: 500px;
+  height: 33px;
+  border: 1px solid rgb(175, 173, 173);
+  margin-top: 9px;
+  margin-bottom: 12px;
 }
-
-#landline,#landlinelabel
-{
-    margin-left:4px;
+.mobile,
+.landline {
+  width: 243px;
 }
-
-#lbelsp,#mbsp
-{
-   display:inline-block;
+.landLine{
+  margin-left: 10px;
 }
-#lbslsp
-{
-    margin-left:4px;
-}
-#namelb
-{
-    margin-top:32px;
-}
-
-#address
-{
-    height:80px;
-}
-
-#btn
-{
-    
-    height:40px;
-    width:130px;
-    background-color: #27A746;
-    border-width:0px;
-    border-radius:5px;
-    font-size: 16px;
-    text-align:center;
-    box-sizing:border-box;
-    padding-top:6px;
-    cursor: pointer;
-    position:relative;
-    left:530px;
-
-}
-.warn{
-    color: red;
-    
-    margin-left: 20px;
+textarea{
+  width: 500px;
+  height: 85px;
+  border: 1px solid rgb(175, 173, 173);
+  margin-top: 10px;
+  margin-bottom: 16px;
 }

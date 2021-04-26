@@ -1,29 +1,37 @@
 <div class="row">
-    <div class="col-6">
-        <div class="display-contact" id="display-contact" >
-            <ul >
-                <h4 class="display-heading" id="display-name" >{{contact["name"]}}</h4>
-                <li class="display-details ">Email:  <span id='display-email'>{{contact["email"]}}</span></li>
-                   <li class="display-details " >Mobile:<span id="display-mobile">{{contact["mobile"]}}</span></li>
-                   <li class="display-details ">Landline:<span id="display-landline"></span></li>
-                   <li class="display-details ">Website:<span id="display-website"></span></li>
-                   <li>Address: 
-                       <span id="display-address" class="display-address">hyderabad</span>
-                       <span id="display-state" class="display-state">Telangana</span>
-                       <span id="display-pin-code" class="display-pin-code">500061</span>
-                    </li>
-            </ul>
-        </div>
+  <div class="col-6" *ngIf="contact!=undefined">
+    <div class="displayContact">
+      <ul>
+        <h4 class="displayHeading">{{ contact["name"] }}</h4>
+        <li class="displayDetails">
+          Email: <span>{{ contact["email"] }}</span>
+        </li>
+        <li class="displayDetails">
+          Mobile: <span>{{ contact["mobile"] }}</span>
+        </li>
+        <li class="displayDetails">
+          Landline: <span>{{ contact["landline"] }}</span>
+        </li>
+        <li class="displayDetails">
+          Website: <span>{{ contact["website"] }}</span>
+        </li>
+        <li>
+          Address:
+          <span class="displayAddress">hyderabad</span>
+          <span class="displayState">Telangana</span>
+          <span class="displayPinCode">500061</span>
+        </li>
+      </ul>
     </div>
-    <div class="col-6 details-modification">
-        <a  class="edit_action" (click)="edit()" >
-            <img src="./assets/Edit-icon.png"  width=19px height=19px>
-            <span id="edit" class="edit">EDIT</span>
-        </a>
-        <a class="delete_action"  (click)="delete()">
-            <img src="./assets/delete1.png" class="delete_img"  width=18px height=26px>
-            <span class="delete">DELETE</span>
-        </a>
-    </div>
+  </div>
+  <div class="col-6 detailsModification">
+    <a class="editAction" (click)="edit()">
+      <img src="./assets/images/Edit-icon.png" width="19px" height="19px" />
+      <span id="edit" class="edit">EDIT</span>
+    </a>
+    <a class="deleteAction" (click)="delete()">
+      <img src="./assets/images/delete1.png" class="deleteImg" width="18px" height="26px"/>
+      <span class="delete">DELETE</span>
+    </a>
+  </div>
 </div>
-

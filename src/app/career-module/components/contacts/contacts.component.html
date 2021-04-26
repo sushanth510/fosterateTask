@@ -1,10 +1,9 @@
-<ul class="contacts" id="contacts" >
-    <li class="" id="contact1">
-        <ul   *ngFor="let contact of contacts" [ngClass]="{'contact-details':true,'contact-active':(contact.id==currentActiveId)}" (click)="updateId(contact.id)">
-            <li class="contact-name" id="contact-name" >{{contact.name}}</li> 
-            <li  id="phone-number">{{contact.mobile}}</li>
-            <li  id="mail-id">{{contact.email}}</li>
-        </ul>
-    </li>
-</ul>
-
+<div  class="p-0 contacts">
+    <div class="list-group rounded-0" *ngFor="let contact of contacts">
+      <a [routerLink]="['/home', contact.id]" routerLinkActive="contactActive">
+        <li class="contactName">{{ contact.name }}</li>
+        <li>{{ contact.mobile }}</li>
+        <li>{{ contact.email }}</li>
+      </a>
+    </div>
+</div>

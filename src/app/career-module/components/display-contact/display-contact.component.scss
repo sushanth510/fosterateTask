@@ -1,55 +1,49 @@
-ul{
-    list-style-type: none;
-    margin: 0px;
-    padding: 0px;
+ul {
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px;
 }
-.display-contact{
-    display: inline-block;
-    margin-left: 100px;
-    position: absolute;
-    margin-top: 13px;
-    font-weight: 400;
-    font-size: 15px;
+.displayContact {
+  display: inline-block;
+  margin-left: 100px;
+  position: absolute;
+  margin-top: 13px;
+  font-weight: 400;
+  font-size: 15px;
 }
-.display-heading
-{
-    margin: 0px;
-    margin-bottom: 5px;
-    font-weight: 600;
-    font-size: 25px;
-    
+.displayHeading {
+  margin: 0px;
+  margin-bottom: 5px;
+  font-weight: 600;
+  font-size: 25px;
 }
-.display-details 
-{
-    margin-bottom: 10px;
+.displayDetails {
+  margin-bottom: 10px;
 }
-.display-pin-code,.display-state
-{
-    display:block;
-    margin:5px 0 0 64px;
+.displayPinCode,
+.displayState {
+  display: block;
+  margin: 5px 0 0 64px;
 }
-.details-modification
-{
-    display: inline-block;
-    margin-left: 400px;
-    margin-top: 13px;
-    font-weight: 400;
+.detailsModification {
+  display: inline-block;
+  margin-left: 400px;
+  margin-top: 13px;
+  font-weight: 400;
 }
-.edit_action
-{
-    display: inline-block;
-    cursor: pointer;
-    text-decoration: none;
-    color: black;
+.editAction {
+  display: inline-block;
+  cursor: pointer;
+  text-decoration: none;
+  color: black;
 }
-.delete_action
-{
-    display: inline-block;
-    cursor: pointer;
-    text-decoration: none;
-    color: black;
-    margin-left: 4px;
+.deleteAction {
+  display: inline-block;
+  cursor: pointer;
+  text-decoration: none;
+  color: black;
+  margin-left: 4px;
 }
-.delete_img{
-    margin-bottom: 10px;
+.deleteImg {
+  margin-bottom: 10px;
 }
