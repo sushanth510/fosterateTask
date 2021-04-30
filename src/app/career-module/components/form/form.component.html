@@ -26,7 +26,9 @@
       <label for="Address" class="fw-bold">Address</label><br>
       <textarea type="text" class="form-control rounded address" formControlName="address" cols="70" ></textarea>
       <div class="d-flex justify-content-end">
-        <button type="submit" class="btn">Add</button>
+        <button type="submit" class="btn" *ngIf="path!=currentLink">Add</button>
+        <button type="submit" class="btn" *ngIf="path==currentLink">Update</button>
+
       </div>
     </div>
   </form>

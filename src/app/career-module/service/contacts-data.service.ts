@@ -14,9 +14,9 @@ export class ContactsDataService {
   getData(): { contactlist: Array<Contact>; status: boolean } {
     if (this.contactsArray.length == 0) {
       return { contactlist: null, status: false };
-    } else {
+    } 
       return { contactlist: this.contactsArray, status: true };
-    }
+    
   }
     
   addContact(new_contact:object):void{

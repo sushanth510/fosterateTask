@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "fir-demo-project": {
+      "hosting": {
+        "app": [
+          "fir-demo-project"
+        ]
+      }
+    }
+  }
+}

@@ -15,12 +15,16 @@
         <li class="displayDetails">
           Website: <span>{{ contact["website"] }}</span>
         </li>
-        <li>
+         <li>
           Address:
-          <span class="displayAddress">hyderabad</span>
-          <span class="displayState">Telangana</span>
-          <span class="displayPinCode">500061</span>
-        </li>
+          <span class="">{{addressArray[0]}}</span>
+          <div *ngFor="let a of addressArray">
+            <span *ngIf="addressArray[0]!=a" class="displayPinCode">{{a}}</span>
+          </div>
+          
+          <!-- <span class="displayState">Telangana</span>
+          <span class="displayPinCode">500061</span> -->
+        </li> 
       </ul>
     </div>
   </div>

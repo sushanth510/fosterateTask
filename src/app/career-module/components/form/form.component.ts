@@ -11,11 +11,14 @@ import { Contact } from '../../model/contact.model';
 export class FormComponent implements OnInit {
   contactForm:FormGroup ;
   formData: Contact;
+  contact:Contact;
   currentLink:string;
   contactsArray:Array<Contact>
   currentActiveId:number
   index:number;
   receivedDataObject:object;
+  currentPath:String;
+  path:String;
   formErrors=
   {
     'name':'',
@@ -31,7 +34,7 @@ export class FormComponent implements OnInit {
    'email':
    {
      'required':' (email is required)',
-     'email':' (invalid email)'    },
+     'pattern':' (invalid email)'    },
    'mobile':
    {
      'required':' (phone number is required)',
@@ -42,7 +45,7 @@ export class FormComponent implements OnInit {
   constructor(private formbuilder:FormBuilder,private contactsDataservice:ContactsDataService,private router:Router,private activatedRoute:ActivatedRoute) {
   this.contactForm=formbuilder.group({
     name:['',Validators.required],
-    email:['',[Validators.required,Validators.email]],
+    email:['',[Validators.required,Validators.pattern("[A-Z a-z 0-9 \. \- \_]+[\@][a-z]{2,8}[\.][a-z]{2,4}")]],
     mobile:['',[Validators.required,Validators.min(1000000000),Validators.max(9999999999)]],
     landline:[''],
     website:[''],
@@ -50,28 +53,33 @@ export class FormComponent implements OnInit {
   })
   }
   ngOnInit(): void {
+    this.contactForm.valueChanges.subscribe(()=>
+     {
+      this.validate(this.contactForm);
+     })
     this.currentLink=this.router.url;
     this.activatedRoute.params.subscribe(params=>{
       this.currentActiveId=params.id;
     })
-    var path="/home/edit/"+this.currentActiveId
-    if(this.currentLink==path){
+    this.path="/home/edit/"+this.currentActiveId
+    if(this.currentLink==this.path){
       this.receivedDataObject=this.contactsDataservice.getData()
       if(this.receivedDataObject["status"]==true){
         this.contactsArray=this.receivedDataObject["contactlist"]
       }
-      this.index=this.contactsArray.findIndex(
+      this.contact=this.contactsArray.find(
         (contact)=>contact["id"]==this.currentActiveId
       )
       this.contactForm.patchValue({
-        name:this.contactsArray[this.index]["name"],
-        email:this.contactsArray[this.index]["email"],
-        mobile:this.contactsArray[this.index]["mobile"],
-        landline:this.contactsArray[this.index]["landline"],
-        website:this.contactsArray[this.index]["website"],
-        addresss:this.contactsArray[this.index]["address"]
+        name:this.contact["name"],
+        email:this.contact["email"],
+        mobile:this.contact["mobile"],
+        landline:this.contact["landline"] ,
+        website:this.contact["website"] ,
+        address:this.contact["address"] 
       })
     }
+    
   }
 
   senddata():void{

@@ -1,0 +1,4 @@
+# Query: <div class="row">\\n    <div \\*ngIf="contactsExisting==true" class="col-sm-4 contacts">\\n        <h4 class="contactsHeading">CONTACTS</h4>\\n        <div>\\n            <app-contacts ></app-contacts>\\n        </div>\\n    </div>\\n    <div class="col-sm-4" \\*ngIf="contactsExisting==false ">\\n    </div>\\n    <div class="col-sm-4">\\n        <app-form></app-form>\\n    </div>\\n</div>\\n
+# Flags: WordMatch RegExp
+# ContextLines: 1
+

@@ -14,6 +14,8 @@ export class DisplayContactComponent implements OnInit {
   currentActiveId: number;
   index: number;
   receivedDataObject: object;
+  address:string;
+  addressArray=new Array();
   constructor(
     private contactsDataservice: ContactsDataService,
     private activatedRoute: ActivatedRoute,
@@ -30,7 +32,8 @@ export class DisplayContactComponent implements OnInit {
       this.contact = this.contacts.find(
         (contact) => contact.id == this.currentActiveId
       );
-      
+      this.address=this.contact["address"];
+      this.addressArray=this.address.split(",")
     });
   }
 
@@ -45,20 +48,24 @@ export class DisplayContactComponent implements OnInit {
     this.activatedRoute.params.subscribe((params) => {
       this.currentActiveId = params['id'];
     });
-    this.contactsDataservice.deleteContact(this.currentActiveId);
     this.receivedDataObject = this.contactsDataservice.getData();
     if (this.receivedDataObject['status']) {
       this.contacts = this.receivedDataObject['contactlist'];
-      if (this.contacts.length >= 1) {
-        this.currentActiveId = this.contacts[0]['id'];
+      this.index=this.contacts.findIndex(
+        contact=>contact.id==this.currentActiveId
+      )
+      this.contactsDataservice.deleteContact(this.currentActiveId);
+      if(this.index==0){
+        if(this.contacts[this.index+1]==undefined){
+          this.router.navigateByUrl('/home')
+        }
+        else{
+          this.router.navigateByUrl('/home/'+this.contacts[this.index]["id"])
+        }
       }
-  
-      if (this.currentActiveId != undefined) {
-        this.router.navigateByUrl('/home/' + this.currentActiveId);
+      else{
+        this.router.navigateByUrl("/home/"+this.contacts[(this.index)-1]["id"])
       }
-    }
-    else{
-      this.router.navigateByUrl('/home')
     }
   }
 }
