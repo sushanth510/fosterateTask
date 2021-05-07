@@ -1,11 +1,11 @@
 <div class="row">
-  <div *ngIf="contactsExisting" class="col-3 contacts">
+  <div *ngIf="contacts.length!=0" class="col-3 contacts">
     <h4 class="contactsHeading">CONTACTS</h4>
     <div>
       <app-contacts></app-contacts>
     </div>
   </div>
-  <div class="col-3" *ngIf="!contactsExisting">
+  <div class="col-3" *ngIf="contacts.length==0">
   
   </div>
   <div class="col-3">

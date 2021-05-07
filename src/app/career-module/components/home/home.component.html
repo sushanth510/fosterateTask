@@ -1,11 +1,11 @@
-<div *ngIf="contactsExisting">
+<div *ngIf="contacts.length!=0">
   <h4 class="contactsHeading">CONTACTS</h4>
   <div class="flexContainer">
     <app-contacts class="contacts"></app-contacts>
     <app-display-contact class="displayContact"></app-display-contact>
   </div>
 </div>
-<div *ngIf="!contactsExisting" class="text-primary text-center mt-5">
+<div *ngIf="contacts.length==0" class="text-primary text-center mt-5">
   <img src="./assets/images/icon.jpg" alt="" width="10%"  />
   <h3>No contacts existed.</h3>
   <h3>click on "+ADD" to add new contact.</h3>

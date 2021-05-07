@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { Contact } from '../../model/contact.model';
 import { ContactsDataService } from '../../service';
 @Component({
@@ -8,14 +9,24 @@ import { ContactsDataService } from '../../service';
 })
 export class AddComponent implements OnInit {
   receivedDataObject: object;
-  contacts: Array<Contact>;
+  contacts: Array<Contact>=[];
   contactsExisting: boolean=false;
-  constructor(private contactsDataservice: ContactsDataService) {}
+  contact:Contact;
+  constructor(
+    private contactsDataservice: ContactsDataService,
+    private firestore: AngularFirestore
+    ) {}
   ngOnInit(): void {
     this.receivedDataObject = this.contactsDataservice.getData();
     if (this.receivedDataObject['status'] == true) {
       this.contacts = this.receivedDataObject['contactlist'];
     }
-    this.contactsExisting = this.receivedDataObject['status'];
+    if(this.contacts.length==0){
+      this.contactsExisting = false
+    }
+    else{
+      this.contactsExisting = true
+    }
+    
   }
 }

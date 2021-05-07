@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { ContactsDataService } from '../../service';
 import { ActivatedRoute, Router } from '@angular/router'
 import { Contact } from '../../model/contact.model';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
@@ -13,8 +15,8 @@ export class FormComponent implements OnInit {
   formData: Contact;
   contact:Contact;
   currentLink:string;
-  contactsArray:Array<Contact>
-  currentActiveId:number
+  contacts:Array<Contact>=[];
+  currentActiveId:string;
   index:number;
   receivedDataObject:object;
   currentPath:String;
@@ -42,7 +44,11 @@ export class FormComponent implements OnInit {
      'max':' (mobile.no should be of 10 digits)'
    }
   }
-  constructor(private formbuilder:FormBuilder,private contactsDataservice:ContactsDataService,private router:Router,private activatedRoute:ActivatedRoute) {
+  constructor(private formbuilder:FormBuilder,
+              private contactsDataservice:ContactsDataService,
+              private router:Router,
+              private activatedRoute:ActivatedRoute,
+              private firestore:AngularFirestore,) {
   this.contactForm=formbuilder.group({
     name:['',Validators.required],
     email:['',[Validators.required,Validators.pattern("[A-Z a-z 0-9 \. \- \_]+[\@][a-z]{2,8}[\.][a-z]{2,4}")]],
@@ -65,9 +71,11 @@ export class FormComponent implements OnInit {
     if(this.currentLink==this.path){
       this.receivedDataObject=this.contactsDataservice.getData()
       if(this.receivedDataObject["status"]==true){
-        this.contactsArray=this.receivedDataObject["contactlist"]
+        this.contacts=this.receivedDataObject["contactlist"]
       }
-      this.contact=this.contactsArray.find(
+     console.log("active id----",this.currentActiveId)
+      console.log("first contact id",this.contacts)
+      this.contact=this.contacts.find(
         (contact)=>contact["id"]==this.currentActiveId
       )
       this.contactForm.patchValue({
@@ -87,13 +95,14 @@ export class FormComponent implements OnInit {
       let path="/home/edit/"+this.currentActiveId
       this.formData=this.contactForm.value;
       if(this.currentLink==path){
-        this.formData["id"]=this.currentActiveId;
-        
-        this.contactsDataservice.updateContact(this.currentActiveId,this.formData);
+        // this.formData["id"]=this.currentActiveId;
+        // this.contactsDataservice.updateContact(this.currentActiveId,this.formData);
+        this.firestore.doc("contacts/"+this.currentActiveId).update(this.formData)
       }
       else{
-        this.contactsDataservice.addContact(this.formData)
-        this.currentActiveId=this.contactsDataservice.idGenerator;
+        // this.contactsDataservice.addContact(this.formData)
+        
+        this.firestore.collection("contacts").add(this.formData)
       }
       this.router.navigateByUrl("/home/"+this.currentActiveId)
     }
