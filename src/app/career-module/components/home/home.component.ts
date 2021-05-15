@@ -1,40 +1,44 @@
 import { Component, OnInit } from '@angular/core';
 import { ContactsDataService } from '../../service';
 import { Contact } from '../../model/contact.model';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { ActivatedRoute, Router } from '@angular/router';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  contacts:Array<Contact>=[];
+  contacts: Array<Contact> = [];
   receivedDataObject: object;
-  contactsExisting:boolean;
+  contactsExisting: boolean;
+  isEmpty:boolean;
   index: number;
-  contact:Contact;
+  contact: Contact;
+  currentPath: string;
+  loading: boolean = true;
   constructor(
     private contactsDataservice: ContactsDataService,
-    private firestore:AngularFirestore
-    ) {}
+    private router: Router,
+    private activatedRoute:ActivatedRoute
+  ) {}
+
   ngOnInit(): void {
-    // this.receivedDataObject = this.contactsDataservice.getData();
-    // this.contactsExisting = this.receivedDataObject['status'];
-    // if (this.receivedDataObject['status'] == true) {
-    //   this.contacts = this.receivedDataObject['contactlist'];
-    // }
-    let contactsDoc = this.firestore.firestore.collection('contacts');
-    contactsDoc.get().then((contacts) => {
-      this.contacts = [];
-      contacts.forEach((doc) => {
-      
-        this.contact = {
-          id: doc.id,
-          ...((doc.data() as object) as Contact),
-        };
-        this.contacts.push(this.contact);
-      });
-    });
-    
+    this.contactsDataservice.getContacts().subscribe((obj)=>{
+      if(obj.status){
+        this.isEmpty=false;
+        this.loading=false;
+        this.contacts=obj.contacts;
+        this.currentPath = this.router.url;
+        if (this.currentPath == '/home') {
+          this.router.navigateByUrl('/home/' + this.contacts[0]['id']);
+        }
+      }
+      else{
+        this.loading=false;
+        this.isEmpty=true;
+      }
+      console.log("empty--------",this.isEmpty)
+    })
   }
 }

@@ -17,13 +17,7 @@
         </li>
          <li>
           Address:
-          <span class="">{{addressArray[0]}}</span>
-          <div *ngFor="let a of addressArray">
-            <span *ngIf="addressArray[0]!=a" class="displayPinCode">{{a}}</span>
-          </div>
-          
-          <!-- <span class="displayState">Telangana</span>
-          <span class="displayPinCode">500061</span> -->
+          <pre class="d-inline-flex address">{{contact["address"]}}</pre>
         </li> 
       </ul>
     </div>

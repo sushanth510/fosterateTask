@@ -1,6 +1,6 @@
 <div  class="p-0 contacts">
-    <div class="list-group rounded-0" *ngFor="let contact of contacts">
-      <a [routerLink]="['/home', contact.id]" routerLinkActive="contactActive">
+    <div class="list-group rounded-0" *ngFor="let contact of contacts;">
+      <a [routerLink]="['/home', contact.id]" routerLinkActive="contactActive" >
         <li class="contactName">{{ contact.name }}</li>
         <li>{{ contact.mobile }}</li>
         <li>{{ contact.email }}</li>

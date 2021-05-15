@@ -4,7 +4,7 @@ import { ContactsDataService } from '../../service';
 import { ActivatedRoute, Router } from '@angular/router'
 import { Contact } from '../../model/contact.model';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
@@ -16,7 +16,7 @@ export class FormComponent implements OnInit {
   contact:Contact;
   currentLink:string;
   contacts:Array<Contact>=[];
-  currentActiveId:string;
+  currentActiveId:any;
   index:number;
   receivedDataObject:object;
   currentPath:String;
@@ -51,7 +51,7 @@ export class FormComponent implements OnInit {
               private firestore:AngularFirestore,) {
   this.contactForm=formbuilder.group({
     name:['',Validators.required],
-    email:['',[Validators.required,Validators.pattern("[A-Z a-z 0-9 \. \- \_]+[\@][a-z]{2,8}[\.][a-z]{2,4}")]],
+    email:['',[Validators.required,Validators.pattern("[A-Z a-z 0-9 \. \- \_]+[\@][a-z]{2,10}[\.][a-z]{2,4}")]],
     mobile:['',[Validators.required,Validators.min(1000000000),Validators.max(9999999999)]],
     landline:[''],
     website:[''],
@@ -69,48 +69,44 @@ export class FormComponent implements OnInit {
     })
     this.path="/home/edit/"+this.currentActiveId
     if(this.currentLink==this.path){
-      this.receivedDataObject=this.contactsDataservice.getData()
-      if(this.receivedDataObject["status"]==true){
-        this.contacts=this.receivedDataObject["contactlist"]
-      }
-     console.log("active id----",this.currentActiveId)
-      console.log("first contact id",this.contacts)
-      this.contact=this.contacts.find(
-        (contact)=>contact["id"]==this.currentActiveId
-      )
-      this.contactForm.patchValue({
-        name:this.contact["name"],
-        email:this.contact["email"],
-        mobile:this.contact["mobile"],
-        landline:this.contact["landline"] ,
-        website:this.contact["website"] ,
-        address:this.contact["address"] 
+      this.contactsDataservice.getContact(this.currentActiveId).subscribe((obj)=>{
+        if(obj.status){
+          this.contact=obj.contact;
+        }
+       
+        this.contactForm.patchValue({
+          name:this.contact["name"],
+          email:this.contact["email"],
+          mobile:this.contact["mobile"],
+          landline:this.contact["landline"] ,
+          website:this.contact["website"] ,
+          address:this.contact["address"] 
+        })
       })
+     
     }
     
   }
+
 
   senddata():void{
     if(this.contactForm.valid){
       let path="/home/edit/"+this.currentActiveId
       this.formData=this.contactForm.value;
       if(this.currentLink==path){
-        // this.formData["id"]=this.currentActiveId;
-        // this.contactsDataservice.updateContact(this.currentActiveId,this.formData);
         this.firestore.doc("contacts/"+this.currentActiveId).update(this.formData)
+        this.contactsDataservice.update(this.formData,this.currentActiveId)
+        this.router.navigateByUrl("/home/"+this.currentActiveId)
       }
       else{
-        // this.contactsDataservice.addContact(this.formData)
-        
-        this.firestore.collection("contacts").add(this.formData)
-      }
-      this.router.navigateByUrl("/home/"+this.currentActiveId)
+        let contactId=this.contactsDataservice.add(this.formData);
+        this.router.navigateByUrl("/home/"+contactId);  
+      } 
     }
     else{
       this.validate(this.contactForm,true);
     }
   }
-
   validate(group:FormGroup=this.contactForm,submittedEmpty:boolean=false):void
   {
     Object.keys(group.controls).forEach( (key:string)=>

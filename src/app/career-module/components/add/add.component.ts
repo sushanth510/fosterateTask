@@ -12,21 +12,15 @@ export class AddComponent implements OnInit {
   contacts: Array<Contact>=[];
   contactsExisting: boolean=false;
   contact:Contact;
+  loading:boolean=true;
   constructor(
     private contactsDataservice: ContactsDataService,
     private firestore: AngularFirestore
     ) {}
   ngOnInit(): void {
-    this.receivedDataObject = this.contactsDataservice.getData();
-    if (this.receivedDataObject['status'] == true) {
-      this.contacts = this.receivedDataObject['contactlist'];
-    }
-    if(this.contacts.length==0){
-      this.contactsExisting = false
-    }
-    else{
-      this.contactsExisting = true
-    }
-    
+    this.contactsDataservice.getContacts().subscribe((obj)=>{
+      this.loading=false
+      this.contactsExisting=obj.status;
+    }) 
   }
 }

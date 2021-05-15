@@ -1,12 +1,34 @@
-<div *ngIf="contacts.length!=0">
+<div *ngIf="!isEmpty && !loading">
   <h4 class="contactsHeading">CONTACTS</h4>
   <div class="flexContainer">
     <app-contacts class="contacts"></app-contacts>
     <app-display-contact class="displayContact"></app-display-contact>
   </div>
 </div>
-<div *ngIf="contacts.length==0" class="text-primary text-center mt-5">
-  <img src="./assets/images/icon.jpg" alt="" width="10%"  />
+<div *ngIf="isEmpty && !loading" class="text-primary text-center mt-5">
+  <img src="./assets/images/icon.jpg" alt="" width="10%" />
   <h3>No contacts existed.</h3>
   <h3>click on "+ADD" to add new contact.</h3>
 </div>
+
+<div *ngIf="loading">
+  <div class="row mt-5 ms-3">
+    <div class="col-md-4">
+      <div class="item">
+        <ngx-skeleton-loader count="1" [theme]="{ 'border-radius': '0', height: '16px' }"></ngx-skeleton-loader>
+        <ngx-skeleton-loader count="5" [theme]="{ 'border-radius': '0', height: '50px' }"></ngx-skeleton-loader>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="item">
+        <ngx-skeleton-loader count="1" [theme]="{ 'border-radius': '0', height: '32px' }"></ngx-skeleton-loader>
+        <ngx-skeleton-loader count="5" [theme]="{ 'border-radius': '0', height: '15px' }"></ngx-skeleton-loader>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <ngx-skeleton-loader count="1" [theme]="{ 'border-radius': '0', height: '32px' }"></ngx-skeleton-loader>
+    </div>
+  </div>
+</div>
+
+
