@@ -1,5 +1,6 @@
 import { Injectable, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { Contact } from '../model/contact.model';
 
@@ -12,17 +13,17 @@ export class ContactsDataService {
   index: number;
   contact: Contact;
   status:boolean;
-  constructor(private firestore: AngularFirestore) {}
+  constructor(
+    private firestore: AngularFirestore,
+    private toastr:ToastrService
+    ) {}
 
   getContact(id:string): Observable<{contact:Contact,status:boolean}> {
     return new Observable<any>((sub)=>{
       
       this.firestore.doc("contacts/"+id).get().subscribe((contact)=>{
         if(contact && contact.exists){
-          this.contact = {
-            id: contact.id,
-            ...((contact.data() as object) as Contact),
-          };
+          this.contact = contact.data() as Contact;
           sub.next({contact:this.contact,status:true})
         }
         else{
@@ -39,10 +40,7 @@ export class ContactsDataService {
         if(contacts && !contacts.empty){
           this.contactsArray=[]
           contacts.forEach((doc) => {
-            this.contact = {
-              id: doc.id,
-              ...((doc.data() as object) as Contact),
-            },
+            this.contact = doc.data() as Contact
             this.contactsArray.push(this.contact);
           }),
           sub.next({contacts:this.contactsArray,status:true})
@@ -55,17 +53,20 @@ export class ContactsDataService {
     })
 
   }
-  delete(id:string){
+  deleteContact(id:string){
     this.firestore.doc('contacts/' + id).delete();
+    this.toastr.success('Contact deleted successfully!')
   }
-  update(contact:Contact,id:string){
+  updateContact(contact:Contact,id:string){
     this.firestore.doc("contacts/"+id).update(contact)
+    this.toastr.success('Contact updated successfully!')
   }
-  add(contact:Contact){
+  addContact(contact:Contact){
     this.idGenerator+=1
     let id=this.firestore.firestore.collection("contacts").doc().id;
     contact["id"]=id;
     this.firestore.collection("contacts").doc(id).set(contact)
+    this.toastr.success('Contact added successfully!')
     return id;
   }
   

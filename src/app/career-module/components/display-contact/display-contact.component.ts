@@ -48,7 +48,7 @@ export class DisplayContactComponent implements OnInit {
     this.activatedRoute.params.subscribe((params) => {
       this.currentActiveId = params['id'];
     });
-    this.contactsDataservice.delete(this.currentActiveId)
+    this.contactsDataservice.deleteContact(this.currentActiveId)
     this.contactsDataservice.getContacts().subscribe((obj) => {
       if(obj.status){
         this.contacts=obj.contacts;

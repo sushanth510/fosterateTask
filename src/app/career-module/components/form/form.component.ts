@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { ContactsDataService } from '../../service';
 import { ActivatedRoute, Router } from '@angular/router'
 import { Contact } from '../../model/contact.model';
-import { AngularFirestore } from '@angular/fire/firestore';
+
 
 @Component({
   selector: 'app-form',
@@ -48,7 +48,7 @@ export class FormComponent implements OnInit {
               private contactsDataservice:ContactsDataService,
               private router:Router,
               private activatedRoute:ActivatedRoute,
-              private firestore:AngularFirestore,) {
+              ) {
   this.contactForm=formbuilder.group({
     name:['',Validators.required],
     email:['',[Validators.required,Validators.pattern("[A-Z a-z 0-9 \. \- \_]+[\@][a-z]{2,10}[\.][a-z]{2,4}")]],
@@ -94,12 +94,12 @@ export class FormComponent implements OnInit {
       let path="/home/edit/"+this.currentActiveId
       this.formData=this.contactForm.value;
       if(this.currentLink==path){
-        this.firestore.doc("contacts/"+this.currentActiveId).update(this.formData)
-        this.contactsDataservice.update(this.formData,this.currentActiveId)
+        
+        this.contactsDataservice.updateContact(this.formData,this.currentActiveId)
         this.router.navigateByUrl("/home/"+this.currentActiveId)
       }
       else{
-        let contactId=this.contactsDataservice.add(this.formData);
+        let contactId=this.contactsDataservice.addContact(this.formData);
         this.router.navigateByUrl("/home/"+contactId);  
       } 
     }

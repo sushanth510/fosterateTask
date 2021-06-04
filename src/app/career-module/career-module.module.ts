@@ -4,6 +4,7 @@ import { CarrierModuleRoutingModule } from './career-module-routing.module';
 import { AddComponent, ContactsComponent, DisplayContactComponent, EditComponent, FormComponent, HomeComponent } from './components';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+
 @NgModule({
   declarations: [
     HomeComponent,
@@ -18,7 +19,7 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
     CommonModule,
     CarrierModuleRoutingModule,
     ReactiveFormsModule,
-    NgxSkeletonLoaderModule.forRoot()
+    NgxSkeletonLoaderModule.forRoot(),
   ]
 })
 export class CarrierModuleModule { }

@@ -7,8 +7,9 @@ import { AppComponent, NavigationComponent } from './components'
 import {AngularFireModule} from '@angular/fire'
 import {AngularFirestoreModule} from '@angular/fire/firestore'
 import { environment } from 'src/environments/environment';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { ToastrModule } from 'ngx-toastr'
 
 
 @NgModule({
@@ -23,8 +24,9 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
     RouterModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
+    NgxSkeletonLoaderModule.forRoot(),
     BrowserAnimationsModule,
-    NgxSkeletonLoaderModule.forRoot()
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
